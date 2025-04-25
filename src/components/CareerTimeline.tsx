@@ -16,9 +16,11 @@ export function CareerTimeline() {
 			className='max-w-3xl mx-auto'
 		>
 			<h2 className='text-3xl font-bold text-center mb-8'>Career Timeline</h2>
-			<div className='flex flex-col space-y-6'>
+			<div className='relative pl-10'>
+				<div className='absolute left-2 top-0 h-full w-px bg-blue-500'></div>
 				{timeline.map((item) => (
-					<div key={item.year} className='border-l-2 border-blue-500 pl-4'>
+					<div key={item.year} className='mb-8 relative'>
+						<div className='absolute -left-5 top-1.5 w-3 h-3 bg-blue-500 rounded-full'></div>
 						<h3 className='text-xl font-semibold'>{item.role}</h3>
 						<p className='text-sm text-gray-500'>{item.company}</p>
 						<p className='text-sm'>{item.year}</p>

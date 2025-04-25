@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export function FeaturedProjects() {
-	const { data: projects } = useProjects();
+	const { data: projects } = useProjects({ favoriteOnly: true, limit: 3, sort: 'desc' });
 
 	return (
 		<motion.section
@@ -21,7 +21,7 @@ export function FeaturedProjects() {
 					<Link
 						key={project._id}
 						href={`/projects/${project.slug.current}`}
-						className='border rounded-lg overflow-hidden hover:scale-105 transition shadow-md'
+                        className="border rounded-lg overflow-hidden hover:scale-105 hover:shadow-lg transition-transform duration-300"
 					>
 						{project.mainImage && (
 							<Image src={project.mainImage.asset.url} alt={project.title} width={600} height={400} className='w-full h-48 object-cover' />

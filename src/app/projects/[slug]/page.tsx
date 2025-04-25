@@ -1,58 +1,26 @@
-import client from '@/lib/sanity';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
+
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
+import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-	const query = encodeURIComponent(`*[_type == "project" && slug.current == "${params.slug}"][0]{title, overview}`);
-	const res = await client.get(`?query=${query}`);
-	const project = res.data.result;
+import { useProject } from '@/hooks/useProject';
 
-	if (!project) {
-		return {
-			title: 'Project Not Found',
-		};
+
+export default function ProjectDetailPage() {
+	const params = useParams();
+	const slug = params.slug as string;
+
+	const { data: project, isLoading } = useProject(slug);
+
+	if (isLoading) {
+		return <div className='p-8'>Loading...</div>;
 	}
 
-	return {
-		title: `Angga Hermawan | Project: ${project.title}`,
-		description: project.overview,
-	};
-}
-
-type Project = {
-	title: string;
-	overview: string;
-	problem: string;
-	solution: string;
-	technologies: string[];
-	result: string;
-	mainImage?: { asset: { url: string } };
-	gallery?: { asset: { url: string } }[];
-};
-
-async function getProject(slug: string): Promise<Project | null> {
-	try {
-		const query = encodeURIComponent(`*[_type == "project" && slug.current == "${slug}"][0]{
-      title, overview, problem, solution, technologies, result,
-      mainImage{asset->{url}},
-      gallery[]{asset->{url}}
-    }`);
-		const url = `?query=${query}`;
-		const res = await client.get(url);
-		return res.data.result;
-	} catch (error) {
-		console.error('Error fetching project:', error);
-		return null;
-	}
-}
-
-export default async function ProjectDetailPage({ params }: { params: { slug: string } }) {
-	const project = await getProject(params.slug);
-
 	if (!project) {
-		notFound();
+		return notFound();
 	}
 
 	return (
@@ -82,7 +50,7 @@ export default async function ProjectDetailPage({ params }: { params: { slug: st
 				<div>
 					<h2 className='text-2xl font-semibold'>Technologies Used</h2>
 					<ul className='list-disc ml-6'>
-						{project.technologies.map((tech) => (
+						{project.technologies.map((tech: any) => (
 							<li key={tech}>{tech}</li>
 						))}
 					</ul>
@@ -95,7 +63,7 @@ export default async function ProjectDetailPage({ params }: { params: { slug: st
 					<div>
 						<h2 className='text-2xl font-semibold'>Gallery</h2>
 						<div className='grid grid-cols-2 gap-4 mt-4'>
-							{project.gallery.map((img, idx) => (
+							{project.gallery.map((img: any, idx: any) => (
 								<Image
 									key={idx}
 									src={img.asset.url}

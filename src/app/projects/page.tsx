@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function ProjectsPage() {
-	const { data: projects, isLoading, error } = useProjects();
+	const { data: projects, isLoading, error } = useProjects({ sort: 'desc' });
 
 	if (isLoading) return <div className='p-8'>Loading...</div>;
 	if (error) return <div className='p-8'>Something went wrong!</div>;
