@@ -1,31 +1,71 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { SiReact, SiNextdotjs, SiTailwindcss, SiFirebase } from 'react-icons/si';
+import { SiReact, SiNextdotjs, SiTailwindcss, SiFirebase, SiTypescript, SiVite, SiGithub } from 'react-icons/si';
+import { DiVisualstudio  } from 'react-icons/di';
 
-// const skills = ['React', 'Next.js', 'TailwindCSS', 'Sanity.io', 'Firebase', 'Node.js', 'MySQL', 'Git'];
-const skills = [
-	{ name: 'React', icon: SiReact },
-	{ name: 'Next.js', icon: SiNextdotjs },
-	{ name: 'TailwindCSS', icon: SiTailwindcss },
-	{ name: 'Firebase', icon: SiFirebase },
-];
+const skills = {
+	Frontend: [
+		{ name: 'React', icon: SiReact },
+		{ name: 'Next.js', icon: SiNextdotjs },
+		{ name: 'TypeScript', icon: SiTypescript },
+		{ name: 'Vite', icon: SiVite },
+	],
+	Styling: [{ name: 'TailwindCSS', icon: SiTailwindcss }],
+	'Backend / BaaS': [{ name: 'Firebase', icon: SiFirebase }],
+	Tools: [
+		{ name: 'VS Code', icon: DiVisualstudio },
+		{ name: 'GitHub', icon: SiGithub },
+	],
+};
+
+const itemVariants = {
+	hidden: { opacity: 0, y: 15 },
+	visible: { opacity: 1, y: 0 },
+};
 
 export function SkillsSection() {
 	return (
 		<motion.section
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			transition={{ delay: 0.2, duration: 0.5 }}
-			className='text-center space-y-6'
+			initial='hidden'
+			whileInView='visible'
+			viewport={{ once: true }}
+			variants={{
+				hidden: {},
+				visible: { transition: { staggerChildren: 0.08 } },
+			}}
+			className='w-full max-w-5xl mx-auto px-4 py-20'
 		>
-			<h2 className='text-3xl font-bold'>Skills</h2>
-			<div className='flex flex-wrap justify-center gap-4'>
-				{skills.map(({ name, icon: Icon }) => (
-					<div key={name} className='flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full text-sm shadow hover:scale-105 transition'>
-						<Icon className='text-blue-500' /> {name}
-					</div>
-				))}
+			<div className='grid md:grid-cols-2 gap-12 items-start'>
+				{/* LEFT COLUMN */}
+				<div>
+					<p className='text-sm italic text-gray-400 mb-2'>What I Use</p>
+					<h2 className='text-4xl font-bold leading-tight tracking-tight'>
+						I combine modern technologies and proven tools to ship scalable, fast, and beautiful interfaces.
+					</h2>
+				</div>
+
+				{/* RIGHT COLUMN */}
+				<div className='space-y-6'>
+					{Object.entries(skills).map(([group, items]) => (
+						<div key={group}>
+							<h3 className='text-sm font-semibold text-gray-500 mb-2'>{group}</h3>
+							<div className='flex flex-wrap gap-3'>
+								{items.map(({ name, icon: Icon }) => (
+									<motion.div
+										key={name}
+										variants={itemVariants}
+										whileHover={{ scale: 1.07 }}
+										transition={{ type: 'spring', stiffness: 300 }}
+										className='flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-full shadow-sm hover:bg-blue-50 hover:text-blue-600 hover:shadow-md text-sm text-gray-800 cursor-default transition-all'
+									>
+										<Icon className='text-blue-500' /> {name}
+									</motion.div>
+								))}
+							</div>
+						</div>
+					))}
+				</div>
 			</div>
 		</motion.section>
 	);

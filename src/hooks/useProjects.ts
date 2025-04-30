@@ -1,15 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import { useQuery } from '@tanstack/react-query';
 import client from '@/lib/sanity';
-
-type Project = {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  overview: string;
-  technologies: string[];
-  mainImage?: any;
-};
+import { Project } from '@/types/project';
 
 type UseProjectsParams = {
   favoriteOnly?: boolean;
@@ -28,7 +20,7 @@ export const useProjects = ({ favoriteOnly, limit, sort = 'desc' }: UseProjectsP
       const ordering = `| order(date ${sort})`;
       const limitRange = limit ? `[0...${limit}]` : ``;
 
-      const query = encodeURIComponent(`*[${filter}] ${ordering} ${limitRange} {_id, title, slug, overview, technologies, mainImage{asset->{url}}}`);
+      const query = encodeURIComponent(`*[${filter}] ${ordering} ${limitRange} {_id, title, slug, overview, technologies, features, location, mainImage{asset->{url}}}`);
 
       const url = `?query=${query}&perspective=published`;
       const response = await client.get(url);

@@ -1,26 +1,31 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export function ContactCTA() {
 	return (
 		<motion.section
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			transition={{ delay: 1.2, duration: 0.5 }}
-			className='text-center space-y-6'
+			initial={{ opacity: 0, y: 40 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true }}
+			transition={{ duration: 0.6, ease: 'easeOut' }}
+			className='relative overflow-hidden py-20 px-6 bg-gradient-to-br from-blue-50 to-white border-t border-gray-200'
 		>
-			<h2 className='text-3xl font-bold'>Let&apos;s Work Together!</h2>
-			<p className='text-lg'>Interested in working with me? Let&apos;s build something amazing!</p>
-			<div className='flex justify-center space-x-4'>
+			{/* Optional Blurred Accent */}
+			<div className='absolute top-0 right-0 w-40 h-40 bg-blue-200 blur-3xl opacity-30 -z-10 rounded-full transform translate-x-1/2 -translate-y-1/2' />
+			<div className='absolute bottom-0 left-0 w-32 h-32 bg-blue-100 blur-2xl opacity-25 -z-10 rounded-full transform -translate-x-1/2 translate-y-1/2' />
+
+			<div className='max-w-2xl mx-auto text-center'>
+				<h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>Let’s Build Something Together</h2>
+				<p className='text-gray-600 text-lg mb-8'>
+					I&apos;m currently open to new opportunities — freelance, remote or full-time. Feel free to reach out and start a conversation.
+				</p>
+
 				<Link
-					href='/projects'
-					className='px-6 py-3 bg-black text-white rounded-lg hover:scale-105 hover:bg-gray-800 transition-transform duration-200'
+					href='contact'
+					className='inline-block px-6 py-3 rounded-lg text-white bg-black hover:bg-gray-800 transition font-semibold text-sm'
 				>
-					View Projects
-				</Link>
-				<Link href='/contact' className='px-6 py-3 bg-blue-600 text-white rounded-lg hover:scale-105 hover:bg-blue-700'>
 					Contact Me
 				</Link>
 			</div>

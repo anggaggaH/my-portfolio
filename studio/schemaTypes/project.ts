@@ -89,5 +89,10 @@ export const project = defineType({
       title: 'Show on Homepage?',
       type: 'boolean',
     },
+    {
+      name: 'location',
+      title: 'Location',
+      type: 'string',
+    },
   ],
 })

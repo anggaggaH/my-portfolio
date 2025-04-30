@@ -1,57 +1,67 @@
-# 🚀 Angga Hermawan — Personal Portfolio
+# 🧑‍💻 Angga Hermawan – Personal Portfolio
 
-Welcome to my personal developer portfolio, built to showcase my projects, skills, and experience.
+A modern developer portfolio website built with **Next.js 15**, **Sanity CMS**, and **TailwindCSS** to showcase my projects, skills, career timeline, and contact info. This site serves as an online resume + personal brand hub.
 
-👉 **Live Demo:** [Visit My Portfolio Website](https://anggahermawan.com)
+> 🔗 Live site: [anggahermawan.com](https://anggahermawan.com)
 
 ---
 
 ## ✨ Features
 
-- Modern frontend with **Next.js 14 (App Router)**
-- Fully responsive design
-- Dynamic project content from **Sanity CMS**
-- SEO optimized pages (dynamic titles and descriptions)
-- Smooth animations using **Framer Motion**
-- Secure contact form with **EmailJS + ReCAPTCHA v3**
-- Professional design, fast performance, production-ready
+- ⚡ Interactive Hero section with animated particles
+- 📦 Dynamic project showcase powered by Sanity CMS
+- 🎯 Career timeline with scroll-triggered animations
+- 🛠️ Tech stack badges with hover effects
+- 📃 Certificate display cards
+- 📬 Contact form with EmailJS + reCAPTCHA v3
+- 🚀 Deployed on [Vercel](https://vercel.com)
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-- **Framework**: Next.js 14 (Turbopack)
-- **Styling**: TailwindCSS + shadcn/ui
-- **Animation**: Framer Motion
-- **State Management**: React Query
-- **CMS**: Sanity.io
-- **Form Handling**: EmailJS + Google ReCAPTCHA v3
-- **Deployment**: Vercel
+- **Frontend**: [Next.js 15](https://nextjs.org), [React 19](https://react.dev), [TypeScript](https://www.typescriptlang.org)
+- **Styling**: [TailwindCSS](https://tailwindcss.com), [Framer Motion](https://www.framer.com/motion/)
+- **CMS**: [Sanity Studio](https://www.sanity.io/)
+- **Email & Security**: [EmailJS](https://www.emailjs.com/), [reCAPTCHA v3](https://www.google.com/recaptcha/)
+- **Deployment**: [Vercel](https://vercel.com)
 
 ---
 
-## 🖥️ Screenshots
-
-<!-- OPTIONAL: Upload screenshots in /public/screenshots folder and link them -->
-| Home Page | Projects Page |
-|:---|:---|
-| ![Home Screenshot](./public/screenshots/home.png) | ![Projects Screenshot](./public/screenshots/projects.png) |
-
----
-
-## 🚀 Getting Started Locally
-
-1. Clone the repository:
+## 📁 Project Structure
 
 ```bash
-git clone https://github.com/yourusername/my-portfolio.git
+my-portfolio/
+├── app/                  # Next.js app structure
+│   └── studio/           # Embedded Sanity Studio
+├── components/           # Reusable UI components
+├── hooks/                # Custom React hooks (e.g. useProjects)
+├── sanity/               # Schema + queries for Sanity
+├── public/               # Static assets
+├── styles/               # Global styles
+└── README.md             # You're here!
+```
+
+## 🧪 Running Locally
+```bash
+git clone https://github.com/anggahermawan/my-portfolio.git
 cd my-portfolio
+npm install
+npm run dev
 ```
 
-2. Clone the repository:
-```bash
-```
+## 📬 Contact
+Feel free to reach out via:
 
-2. Clone the repository:
-```bash
-```
+🌐 anggahermawan.com
+
+📧 Email: anggah.net@gmail.com
+
+💼 LinkedIn: linkedin.com/in/anggahermawan
+
+## ⭐ Credits
+Thanks to:
+
+shadcn/ui for UI inspiration
+Sanity.io for a great headless CMS
+Framer Motion for buttery animations
