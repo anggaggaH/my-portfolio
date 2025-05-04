@@ -1,8 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { SiReact, SiNextdotjs, SiTailwindcss, SiFirebase, SiTypescript, SiVite, SiGithub } from 'react-icons/si';
+import { SiReact, SiNextdotjs, SiTailwindcss, SiFirebase, SiTypescript, SiVite, SiGithub, SiGatsby, SiElement, SiGitlab } from 'react-icons/si';
 import { DiVisualstudio  } from 'react-icons/di';
+import { FaBootstrap, FaPhp, FaVuejs } from 'react-icons/fa';
+import { BsFillChatDotsFill } from "react-icons/bs";
 
 const skills = {
 	Frontend: [
@@ -10,12 +12,23 @@ const skills = {
 		{ name: 'Next.js', icon: SiNextdotjs },
 		{ name: 'TypeScript', icon: SiTypescript },
 		{ name: 'Vite', icon: SiVite },
+		{ name: 'Vue.js', icon: FaVuejs },
+		{ name: 'Gatsby.js', icon: SiGatsby },
 	],
-	Styling: [{ name: 'TailwindCSS', icon: SiTailwindcss }],
-	'Backend / BaaS': [{ name: 'Firebase', icon: SiFirebase }],
+	Styling: [
+		{ name: 'TailwindCSS', icon: SiTailwindcss },
+		{ name: 'Bootstrap', icon: FaBootstrap },
+		{ name: 'Element Plus', icon: SiElement }
+	],
+	'Backend / BaaS': [
+		{ name: 'Firebase', icon: SiFirebase },
+		{ name: 'PhP', icon: FaPhp },
+	],
 	Tools: [
 		{ name: 'VS Code', icon: DiVisualstudio },
+		{ name: 'GitLab', icon: SiGitlab },
 		{ name: 'GitHub', icon: SiGithub },
+		{ name: 'ChatGPT', icon: BsFillChatDotsFill },
 	],
 };
 

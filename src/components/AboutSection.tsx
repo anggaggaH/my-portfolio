@@ -7,6 +7,7 @@ import { Mail, Phone, Linkedin } from 'lucide-react';
 export function AboutSection() {
 	return (
 		<motion.section
+			id="about-section"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ delay: 0.3, duration: 0.6 }}
@@ -43,20 +44,21 @@ export function AboutSection() {
 
 					<div className='flex flex-wrap gap-3 pt-4'>
 						<a
-							href='mailto:your@email.com'
+							href='mailto:anggah.net@gmail.com'
 							className='inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-sm font-medium hover:bg-gray-800 transition'
 						>
 							<Mail className='w-4 h-4' /> Email Me
 						</a>
 						<a
-							href='tel:+6281234567890'
+							href='tel:+6285795281435'
 							className='inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-sm font-medium hover:bg-gray-800 transition'
 						>
 							<Phone className='w-4 h-4' /> Call Me
 						</a>
 						<a
-							href='https://linkedin.com/in/yourlinkedin'
+							href='https://linkedin.com/in/angga-hermawan/'
 							className='inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-sm font-medium hover:bg-gray-800 transition'
+							target='_blank'
 						>
 							<Linkedin className='w-4 h-4' /> LinkedIn
 						</a>

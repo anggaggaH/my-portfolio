@@ -5,6 +5,7 @@ import { GoogleReCaptchaProvider, useGoogleReCaptcha } from '@google-recaptcha/r
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import PageWrapper from '@/components/ui/PageWrapper';
 
 const serviceId = process.env.NEXT_PUBLIC_EMAIL_SERVICE;
 const templateId = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE;
@@ -40,7 +41,7 @@ function ContactForm() {
 	};
 
 	return (
-		<form ref={formRef} onSubmit={sendEmail} className='space-y-6'>
+		<form ref={formRef} onSubmit={sendEmail} className='flex flex-col gap-6'>
 			<div>
 				<label className='block mb-2 font-medium' htmlFor='name'>
 					Name
@@ -74,35 +75,36 @@ function ContactForm() {
 
 export default function ContactPage() {
 	return (
-		<GoogleReCaptchaProvider type="v3" siteKey={siteKey!}>
-			<motion.main
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				transition={{ duration: 0.5 }}
-				className='max-w-2xl mx-auto p-8 space-y-8'
-			>
-				<section className='text-center space-y-4'>
-					<h1 className='text-5xl font-bold'>Get in Touch</h1>
-					<p className='text-lg'>Have a project or opportunity? I&apos;d love to hear from you.</p>
-				</section>
+		<PageWrapper>
+			<GoogleReCaptchaProvider type='v3' siteKey={siteKey!}>
+				<motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className='container-page'>
+					<section className='text-center space-y-4'>
+						<h1 className='text-5xl font-bold'>Get in Touch</h1>
+						<p className='text-lg'>Have a project or opportunity? I&apos;d love to hear from you.</p>
+					</section>
 
-				{/* Contact Form */}
-				<ContactForm />
+					{/* Contact Form */}
+					<ContactForm />
 
-				{/* Alternative Contact Info */}
-				<div className='text-center space-y-2 mt-8'>
-					<p>or reach me directly:</p>
-					<p className='font-semibold'>Email: anggah.net@gmail.com</p>
-					<div className='flex justify-center gap-6'>
-						<a href='https://github.com/yourgithub' target='_blank' rel='noopener noreferrer'>
-							<FaGithub size={32} className='hover:scale-110 transition' />
-						</a>
-						<a href='https://linkedin.com/in/yourlinkedin' target='_blank' rel='noopener noreferrer'>
-							<FaLinkedin size={32} className='hover:scale-110 transition' />
-						</a>
+					{/* Alternative Contact Info */}
+					<div className='flex flex-col text-center gap-4 mt-8'>
+						<div className=''>
+							<p>or reach me directly:</p>
+							<a href='mailto:anggah.net@gmail.com' className='font-semibold'>
+								Email: anggah.net@gmail.com
+							</a>
+						</div>
+						<div className='flex justify-center gap-6'>
+							<a href='https://github.com/anggaggaH/' target='_blank' rel='noopener noreferrer'>
+								<FaGithub size={32} className='hover:scale-110 transition' />
+							</a>
+							<a href='https://linkedin.com/in/angga-hermawan/' target='_blank' rel='noopener noreferrer'>
+								<FaLinkedin size={32} className='hover:scale-110 transition' />
+							</a>
+						</div>
 					</div>
-				</div>
-			</motion.main>
-		</GoogleReCaptchaProvider>
+				</motion.main>
+			</GoogleReCaptchaProvider>
+		</PageWrapper>
 	);
 }

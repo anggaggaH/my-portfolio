@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project } from '@/types/project';
 import Image from 'next/image';
+import PageWrapper from '@/components/ui/PageWrapper';
 
 export default function ProjectsPage() {
 	const { data: projects, isLoading, error } = useProjects({ sort: 'desc' });
@@ -47,90 +48,66 @@ export default function ProjectsPage() {
 
 	if (isLoading) return <div className='p-8'>Loading...</div>;
 	if (error) return <div className='p-8'>Something went wrong!</div>;
-
+	console.log('projects', projects)
 	return (
-		<div className='relative p-8 max-w-5xl mx-auto'>
-			<h1 className='text-3xl font-bold mb-12 text-center'>Selected Projects</h1>
-			<ul className='space-y-6 relative z-10'>
-				{projects?.map((project: Project, i) => (
-					<li
-						key={project._id}
-						onMouseEnter={() => setHoveredProject(project)}
-						onMouseLeave={() => setHoveredProject(null)}
-						className='overflow-hidden group flex items-center justify-between border-b pb-4 hover:text-blue-600 transition relative cursor-pointer'
-					>
-						<div className='flex items-center gap-4'>
-							<span className='text-gray-400 text-base'>{String(i + 1).padStart(2, '0')}</span>
-							<Link href={`/projects/${project.slug.current}`} className='text-2xl font-medium'>
-								{project.title}
-							</Link>
-						</div>
-						<span className='text-sm text-gray-500'>{project._id || 'Web Development'}</span>
-					</li>
-				))}
-			</ul>
+		<PageWrapper>
+			<div className='container-page'>
+				<h1 className='text-3xl font-bold mb-12 text-center'>Selected Projects</h1>
+				<ul className='space-y-6 relative z-10'>
+					{projects?.map((project: Project, i) => (
+						<li
+							key={project._id}
+							onMouseEnter={() => setHoveredProject(project)}
+							onMouseLeave={() => setHoveredProject(null)}
+							className='overflow-hidden group flex items-center justify-between border-b pb-4 hover:text-blue-600 transition relative cursor-pointer'
+						>
+							<div className='flex items-center gap-4'>
+								<span className='text-gray-400 text-base'>{String(i + 1).padStart(2, '0')}</span>
+								<Link href={`/projects/${project.slug.current}`} className='text-2xl font-medium'>
+									{project.title}
+								</Link>
+							</div>
+							<span className='text-sm text-gray-500'>{project.location || 'Web Development'}</span>
+						</li>
+					))}
+				</ul>
 
-			<AnimatePresence>
-				{showPreview && distanceMoved > 10 && hoveredProject?.mainImage?.asset?.url && (
-					<motion.div
-						// key={hoveredProject._id}
-						// initial={{ opacity: 0, scale: 0.95 }}
-						// animate={{
-						// 	opacity: 1,
-						// 	scale: 1,
-						// 	left: mousePos.x + 20,
-						// 	top: mousePos.y + 20,
-						// }}
-						// exit={{ opacity: 0, scale: 0.95 }}
-						// transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-						// className='fixed pointer-events-none z-50 w-64 h-auto'
-						// style={{
-						// 	transform: 'translate(-50%, -50%)',
-						// }}
-
-						// key={hoveredProject._id}
-						// initial={{ opacity: 0, y: 20 }}
-						// animate={{
-						// 	opacity: 1,
-						// 	x: mousePos.x + 20,
-						// 	y: mousePos.y + 20,
-						// }}
-						// exit={{ opacity: 0, y: 20 }}
-						// transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-						// className='fixed w-64 h-auto pointer-events-none z-50'
-						// style={{
-						// 	// Critical positioning fix:
-						// 	left: 0,
-						// 	top: 0,
-						// 	transform: 'translate(-50%, -50%)',
-						// }}
-
-						key={hoveredProject._id}
-						initial={{ opacity: 0, scale: 0.95 }}
-						animate={{
-							opacity: 1,
-							scale: 1,
-							left: mousePos.x + 20,
-							top: mousePos.y + 20,
-							transition: { duration: 0.15 },
-						}}
-						exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
-						className='fixed pointer-events-none z-50 w-64 h-auto'
-						style={{
-							transform: 'translate(-50%, -50%)',
-						}}
-					>
-						<Image
-							src={hoveredProject.mainImage.asset.url}
-							alt={hoveredProject.title}
-							width={256} // matches your w-64 (64 * 4 = 256)
-							height={144} // adjust based on your aspect ratio
-							className='w-auto h-auto object-cover rounded-lg shadow-lg'
-							priority={false}
-						/>
-					</motion.div>
-				)}
-			</AnimatePresence>
-		</div>
+				<AnimatePresence>
+					{showPreview && distanceMoved > 10 && hoveredProject?.mainImage?.asset?.url && (
+						<motion.div
+							key={hoveredProject._id}
+							initial={{ opacity: 0, scale: 0.95, left: mousePos.x + 20, top: mousePos.y + 20 }}
+							animate={{
+								opacity: 1,
+								scale: 1,
+								left: mousePos.x + 20,
+								top: mousePos.y + 20,
+								transition: { duration: 0.15 },
+							}}
+							exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+							className='fixed pointer-events-none z-50 w-64 h-auto'
+							style={{
+								transform: 'translate(-50%, -50%)',
+							}}
+							transition={{
+								type: 'spring',
+								stiffness: 300,
+								damping: 30,
+								mass: 0.5,
+							}}
+						>
+							<Image
+								src={hoveredProject.mainImage.asset.url}
+								alt={hoveredProject.title}
+								width={256} // matches your w-64 (64 * 4 = 256)
+								height={144} // adjust based on your aspect ratio
+								className='w-auto h-auto object-cover rounded-lg shadow-lg'
+								priority={false}
+							/>
+						</motion.div>
+					)}
+				</AnimatePresence>
+			</div>
+		</PageWrapper>
 	);
 }
