@@ -9,8 +9,10 @@ import Lightbox from 'yet-another-react-lightbox';
 import Link from 'next/link';
 import 'yet-another-react-lightbox/styles.css';
 
-import { useProject } from '@/hooks/useProject';
 import PageWrapper from '@/components/ui/PageWrapper';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { ProjectHero } from '@/components/ui/Card/ProjectHero';
+import { useProject } from '@/hooks/useProject';
 
 const BackButton = () => (
 	<motion.div
@@ -33,49 +35,6 @@ const BackButton = () => (
 	</motion.div>
 );
 
-export function ProjectHero({ title, imageUrl }: { title: string; imageUrl: string }) {
-	return (
-		<div className='relative h-[65vh] w-full overflow-hidden text-white'>
-			{/* Background Layer */}
-			<div className='absolute inset-0 z-0'>
-				<Image src={imageUrl} alt='Project Hero Background' fill className='object-cover blur-xl scale-110 opacity-50' priority />
-				<div className='absolute inset-0 bg-gradient-to-b from-black/40 to-black/80' />
-			</div>
-
-			{/* Foreground Content */}
-			<div className='relative z-10 max-w-5xl mx-auto h-full flex items-end justify-center pt-12 pb-20 px-4'>
-				<div className='flex flex-col items-center space-y-6'>
-					{/* Animated Image */}
-					<motion.div
-						initial={{ opacity: 0, scale: 0.95 }}
-						animate={{ opacity: 1, scale: 1 }}
-						transition={{ duration: 0.8, ease: 'easeOut' }}
-					>
-						<Image
-							src={imageUrl}
-							alt={title}
-							width={800}
-							height={500}
-							className='object-contain max-h-[320px] w-auto rounded-lg shadow-lg'
-							priority
-						/>
-					</motion.div>
-
-					{/* Animated Title */}
-					<motion.h1
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-						className='text-4xl md:text-5xl font-bold text-center drop-shadow-md'
-					>
-						{title}
-					</motion.h1>
-				</div>
-			</div>
-		</div>
-	);
-}
-
 export default function ProjectDetailPage() {
 	const params = useParams();
 	const slug = params.slug as string;
@@ -83,7 +42,7 @@ export default function ProjectDetailPage() {
 
 	const [lightboxIndex, setLightboxIndex] = useState(-1); // -1 means closed
 
-	if (isLoading) return <div className='p-8'>Loading...</div>;
+	if (isLoading) return <LoadingSpinner />;
 	if (!project) return notFound();
 
 	return (

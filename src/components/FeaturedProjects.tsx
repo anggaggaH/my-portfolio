@@ -3,6 +3,7 @@
 import { useProjects } from '@/hooks/useProjects';
 import { motion } from 'framer-motion';
 import { FeaturedProjectCard } from './ui/Card/FeaturedProjectCard';
+import Link from 'next/link';
 
 const cardVariants = {
 	hidden: { opacity: 0, y: 30 },
@@ -33,19 +34,29 @@ export function FeaturedProjects() {
 			</motion.h2>
 
 			{projects && projects.length > 0 && (
-				<motion.div initial='hidden' whileInView='visible' viewport={{ once: true }} className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-					{projects?.slice(0, 4).map((project, i) => (
-						<motion.div key={project._id} custom={i} variants={cardVariants}>
-							<FeaturedProjectCard
-								title={project.title}
-								imageUrl={project.mainImage.asset.url}
-								country={project.location}
-								features={project.features}
-								tech={project.technologies}
-							/>
-						</motion.div>
-					))}
-				</motion.div>
+				<>
+					<motion.div initial='hidden' whileInView='visible' viewport={{ once: true }} className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+						{projects?.slice(0, 4).map((project, i) => (
+							<motion.div key={project._id} custom={i} variants={cardVariants}>
+								<FeaturedProjectCard
+									title={project.title}
+									imageUrl={project.mainImage.asset.url}
+									country={project.location}
+									features={project.features}
+									tech={project.technologies}
+								/>
+							</motion.div>
+						))}
+					</motion.div>
+					<div className='flex justify-center items-center m-auto mt-8'>
+						<Link
+							href='projects'
+							className='inline-block px-6 py-3 rounded-lg text-white bg-black hover:bg-gray-800 transition font-semibold text-sm'
+						>
+							View All Projects
+						</Link>
+					</div>
+				</>
 			)}
 			{!projects && <div className='text-center text-gray-400 py-10'>Loading featured projects...</div>}
 		</section>
