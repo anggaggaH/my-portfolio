@@ -2,11 +2,18 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
 	content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-	theme: { extend: {} },
+	theme: {
+		extend: {
+			fontFamily: {
+				sans: ['var(--font-geist-sans)', 'sans-serif'],
+				mono: ['var(--font-geist-mono)', 'monospace'],
+			},
+		},
+	},
 	plugins: [],
 	future: {
 		// Tailwind doesn't officially expose this, but it works
-		unstable_disableOpacityUtilitiesByDefault: false,
+		// unstable_disableOpacityUtilitiesByDefault: false,
 		unstable_disablePreflightByDefault: false,
 		// this is the one that matters
 		disableExperimentalPlugins: true,
