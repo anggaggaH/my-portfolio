@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { ClientLayout } from './clientLayout';
 import './globals.css';
+import './styles.scss';
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
