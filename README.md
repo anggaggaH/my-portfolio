@@ -33,12 +33,13 @@ A modern developer portfolio website built with **Next.js 15**, **Sanity CMS**, 
 ```bash
 my-portfolio/
 ├── app/                  # Next.js app structure
-│   └── studio/           # Embedded Sanity Studio
+# │   └── studio/           # Embedded Sanity Studio
 ├── components/           # Reusable UI components
 ├── hooks/                # Custom React hooks (e.g. useProjects)
 ├── sanity/               # Schema + queries for Sanity
 ├── public/               # Static assets
 ├── styles/               # Global styles
+├── studio/               # Embedded Sanity Studio
 └── README.md             # You're here!
 ```
 

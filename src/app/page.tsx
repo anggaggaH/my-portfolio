@@ -37,7 +37,7 @@ export default function HomePage() {
 	};
 	return (
 		<PageWrapper>
-			<main className='relative flex flex-col space-y-24 pt-8'>
+			<main className='relative flex flex-col [&>*:not(:last-child)]:space-y-24 pt-8'>
 				<HomeHero />
 				<div className='w-full border-t border-gray-200 my-16' />
 				<SectionWrapper>
