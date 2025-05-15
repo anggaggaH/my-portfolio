@@ -1,7 +1,7 @@
- 
+
 import { useQuery } from '@tanstack/react-query';
-import client from '@/lib/sanity';
 import { Project } from '@/types/project';
+import { client } from '@/lib/sanity';
 
 type UseProjectsParams = {
   favoriteOnly?: boolean;
@@ -16,15 +16,31 @@ export const useProjects = ({ favoriteOnly, limit, sort = 'desc' }: UseProjectsP
       const conditions = [`_type == "project"`];
       if (favoriteOnly) conditions.push(`favorite == true`);
 
-      const filter = conditions.join(' && ');
-      const ordering = `| order(date ${sort})`;
-      const limitRange = limit ? `[0...${limit}]` : ``;
+      // const filter = conditions.join(' && ');
+      // const ordering = `| order(date ${sort})`;
+      // const limitRange = limit ? `[0...${limit}]` : ``;
 
-      const query = encodeURIComponent(`*[${filter}] ${ordering} ${limitRange} {_id, title, slug, overview, technologies, features, location, mainImage{asset->{url}}}`);
+      // const query = encodeURIComponent(`*[${filter}] ${ordering} ${limitRange} {_id, title, slug, overview, technologies, features, location, mainImage{asset->{url}}}`);
+      const query = `*[${conditions.join(' && ')}] | order(date ${sort})${limit ? `[0...${limit}]` : ''} {
+        _id,
+        title,
+        slug,
+        overview,
+        technologies,
+        features,
+        location,
+        mainImage{
+          asset->{
+            url,
+            metadata {
+              dimensions
+            }
+          }
+        }
+      }`;
 
-      const url = `?query=${query}&perspective=published`;
-      const response = await client.get(url);
-      return response.data.result;
+      const response = await client.fetch(query);
+      return response;
     },
   });
 };

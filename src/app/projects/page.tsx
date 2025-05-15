@@ -48,7 +48,7 @@ export default function ProjectsPage() {
 
 	if (isLoading) return <div className='p-8'>Loading...</div>;
 	if (error) return <div className='p-8'>Something went wrong!</div>;
-	console.log('projects', projects)
+
 	return (
 		<PageWrapper>
 			<div className='container-page'>
