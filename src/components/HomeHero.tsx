@@ -50,7 +50,7 @@ export function HomeHero() {
 				transition={{ delay: 0.3, duration: 0.8 }}
 				className='mt-4 text-lg md:text-xl text-gray-600'
 			>
-				Frontend Developer | 5+ Years of Experience
+				Web Developer | 5+ Years of Experience
 			</motion.p>
 
 			{/* Buttons */}

@@ -1,5 +1,5 @@
-import { client } from '@/lib/sanity';
 import { Metadata } from 'next';
+import { client } from '@/lib/sanity';
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
 	const query = `*[_type == "project" && slug.current == "${params.slug}"][0]{title, overview}`;

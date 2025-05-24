@@ -26,6 +26,7 @@ export function FeaturedProjectCard({
 		<motion.div
 			initial={{ opacity: 0, y: 30 }}
 			whileInView={{ opacity: 1, y: 0 }}
+			whileHover={{ scale: 1.03 }}
 			viewport={{ once: true }}
 			transition={{ duration: 0.5 }}
 			className='rounded-2xl border border-gray-200 shadow-md bg-white overflow-hidden'

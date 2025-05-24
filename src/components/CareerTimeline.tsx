@@ -16,7 +16,7 @@ const timeline = [
     type: 'fulltime',
   },
   {
-    year: '2021–2024',
+    year: '2021–now',
     role: 'Freelance Frontend Developer',
     company: 'Various Clients',
     type: 'freelance',
