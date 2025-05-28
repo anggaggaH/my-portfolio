@@ -5,7 +5,7 @@ export async function getProject({
 	slug,
 }: {
 	slug?: string;
-} = {}): Promise<Project[]> {
+} = {}): Promise<Project | null> {
 	const query = `*[_type == "project" && slug.current == "${slug}"][0]{
         title, overview, problem, solution, technologies, result,
         mainImage{asset->{url}},

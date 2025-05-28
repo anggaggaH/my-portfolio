@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
+import { notFound } from 'next/navigation';
 import ProjectDetailClientPage from './page.client';
 import { getProject } from '@/hooks/sanity/projectQuery';
 
@@ -9,8 +10,11 @@ interface PageProps {
 }
 
 export default async function ProjectDetailPage({ params }: PageProps) {
-	const project: any = await getProject({
+	const project = await getProject({
 		slug: params.slug,
 	});
+	if (!project) {
+    	notFound()
+	}
 	return <ProjectDetailClientPage project={project} />;
 }
