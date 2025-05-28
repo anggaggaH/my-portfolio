@@ -6,7 +6,7 @@ export function ProjectHero({ title, imageUrl }: { title: string; imageUrl: stri
 		<div className='relative h-[65vh] w-full overflow-hidden text-white'>
 			{/* Background Layer */}
 			<div className='absolute inset-0 z-0'>
-				<Image src={imageUrl} alt='Project Hero Background' fill className='object-cover blur-xl scale-110 opacity-50' priority />
+				<Image src={imageUrl} alt={title} fill className='object-cover blur-xl scale-110 opacity-50' priority />
 				<div className='absolute inset-0 bg-gradient-to-b from-black/40 to-black/80' />
 			</div>
 
@@ -34,7 +34,7 @@ export function ProjectHero({ title, imageUrl }: { title: string; imageUrl: stri
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-						className='text-4xl md:text-5xl font-bold text-center drop-shadow-md'
+						className='text-2xl md:text-3xl font-bold text-center drop-shadow-md'
 					>
 						{title}
 					</motion.h1>

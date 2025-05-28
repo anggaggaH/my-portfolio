@@ -13,7 +13,7 @@ export default async function HomeWrapper() {
 		// <main className='relative flex flex-col [&>*:not(:last-child)]:space-y-24 pt-8'>
 		<main className='relative flex flex-col pt-8'>
 			<HomeHero />
-			<div className='w-full border-t border-gray-200 my-16' />
+			<div className='w-full border-t border-gray-200 my-6 md:my-16' />
 			<SectionWrapper>
 				<AboutSection />
 			</SectionWrapper>

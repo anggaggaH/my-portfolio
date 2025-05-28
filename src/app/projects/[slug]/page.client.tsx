@@ -55,7 +55,7 @@ export default function ProjectDetailClientPage({ project }: { project: Project 
             </div> */}
 
 			{/* Content */}
-			<div className='flex flex-col px-4 py-4 max-w-3xl mx-auto gap-10'>
+			<div className='flex flex-col px-4 py-4 max-w-3xl mx-auto gap-10 pb-8'>
 				<SectionBlock title='Overview'>
 					<p>{project.overview}</p>
 				</SectionBlock>
@@ -127,7 +127,7 @@ function SectionBlock({ title, children }: { title: string; children: React.Reac
 			transition={{ duration: 0.6 }}
 			className='space-y-3'
 		>
-			<h2 className='text-2xl font-semibold'>{title}</h2>
+			<h2 className='text-xl md:text-2xl font-semibold'>{title}</h2>
 			<div className='text-gray-700 leading-relaxed'>{children}</div>
 		</motion.section>
 	);

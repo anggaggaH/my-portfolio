@@ -17,7 +17,7 @@ export function CertificatesSection() {
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
 				transition={{ duration: 0.5 }}
-				className='text-3xl font-bold mb-12 text-center'
+				className='section-title'
 			>
 				Certificates
 			</motion.h2>

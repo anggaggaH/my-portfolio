@@ -63,7 +63,7 @@ export function Header() {
 							animate={{ x: 0 }}
 							exit={{ x: '100%' }}
 							transition={{ type: 'tween', duration: 0.4 }}
-							className='fixed top-0 right-0 h-full w-1/2 bg-white z-50 px-10 py-8 flex flex-col justify-between'
+							className='fixed top-0 right-0 h-full w-full md:w-1/2 bg-white z-50 px-10 py-8 flex flex-col justify-between'
 						>
 							{/* Close Icon */}
 							<button onClick={() => setIsOpen(false)} aria-label='Close Menu' className='btn absolute top-6 right-6 text-black'>
@@ -71,7 +71,7 @@ export function Header() {
 							</button>
 
 							{/* Content */}
-							<div className='relative flex flex-col gap-4 w-full h-full p-12'>
+							<div className='relative flex flex-col gap-4 w-full h-full p-0 py-6 md:py-0 md:p-12'>
 								<div className='grid grid-cols-2 h-full w-full mx-auto gap-12 items-start'>
 									{/* Social */}
 									<div className='space-y-4'>

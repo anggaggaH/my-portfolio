@@ -24,7 +24,7 @@ export function ScrollToTop() {
 
 	return (
 		showScrollButton && (
-			<div className='fixed z-50 bottom-6 right-6'>
+			<div className='fixed z-30 bottom-6 right-6'>
 				<button
 					onClick={scrollToTop}
 					className='bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800 transition'

@@ -21,13 +21,13 @@ const cardVariants = {
 
 export function FeaturedProjectsClient({ projects }: { projects: Project[] }) {
 	return (
-		<section className='w-full max-w-5xl mx-auto px-4'>
+		<section className='section-container'>
 			<motion.h2
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true, amount: 0.3 }}
 				transition={{ duration: 0.5 }}
-				className='text-3xl font-bold mb-8 text-center'
+				className='text-2xl md:text-3xl font-bold mb-8 text-center'
 			>
 				Featured Projects
 			</motion.h2>

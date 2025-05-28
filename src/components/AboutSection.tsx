@@ -11,7 +11,7 @@ export function AboutSection() {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ delay: 0.3, duration: 0.6 }}
-			className='w-full max-w-5xl mx-auto px-4 py-20'
+			className='section-container'
 		>
 			<div className='grid md:grid-cols-2 gap-12 items-start'>
 				{/* LEFT COLUMN */}

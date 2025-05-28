@@ -47,13 +47,13 @@ export function SkillsSection() {
 				hidden: {},
 				visible: { transition: { staggerChildren: 0.08 } },
 			}}
-			className='w-full max-w-5xl mx-auto px-4 py-20'
+			className='section-container'
 		>
 			<div className='grid md:grid-cols-2 gap-12 items-start'>
 				{/* LEFT COLUMN */}
 				<div>
 					<p className='text-sm italic text-gray-400 mb-2'>What I Use</p>
-					<h2 className='text-4xl font-bold leading-tight tracking-tight'>
+					<h2 className='text-2xl md:text-3xl font-bold leading-tight tracking-tight'>
 						I combine modern technologies and proven tools to ship scalable, fast, and beautiful interfaces.
 					</h2>
 				</div>

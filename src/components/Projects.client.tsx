@@ -41,7 +41,7 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
 	return (
 		<PageWrapper>
 			<div className='container-page'>
-				<h1 className='text-3xl font-bold mb-12 text-center'>Selected Projects</h1>
+				<h1 className='section-title'>Selected Projects</h1>
 				<ul className='space-y-6 relative z-10'>
 					{projects?.map((project: Project, i) => (
 						<li
@@ -52,7 +52,7 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
 						>
 							<div className='flex items-center gap-4'>
 								<span className='text-gray-400 text-base'>{String(i + 1).padStart(2, '0')}</span>
-								<Link href={`/projects/${project.slug.current}`} className='text-2xl font-medium'>
+								<Link href={`/projects/${project.slug.current}`} className='text-xl md:text-2xl font-medium'>
 									{project.title}
 								</Link>
 							</div>

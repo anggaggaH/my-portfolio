@@ -17,7 +17,7 @@ export function ContactCTA() {
 			<div className='absolute bottom-0 left-0 w-32 h-32 bg-blue-100 blur-2xl opacity-25 -z-10 rounded-full transform -translate-x-1/2 translate-y-1/2' />
 
 			<div className='max-w-2xl mx-auto text-center'>
-				<h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>Let’s Build Something Together</h2>
+				<h2 className='text-2xl md:text-3xl font-bold text-gray-900 mb-4'>Let’s Build Something Together</h2>
 				<p className='text-gray-600 text-lg mb-8'>
 					I&apos;m currently open to new opportunities — freelance, remote or full-time. Feel free to reach out and start a conversation.
 				</p>

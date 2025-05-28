@@ -78,8 +78,8 @@ export default function ContactPage() {
 		<PageWrapper>
 			<GoogleReCaptchaProvider type='v3' siteKey={siteKey!}>
 				<motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className='container-page'>
-					<section className='text-center space-y-4'>
-						<h1 className='text-5xl font-bold'>Get in Touch</h1>
+					<section className='text-center space-y-4 mb-8'>
+						<h1 className='text-2xl md:text-3xl font-bold'>Get in Touch</h1>
 						<p className='text-lg'>Have a project or opportunity? I&apos;d love to hear from you.</p>
 					</section>
 

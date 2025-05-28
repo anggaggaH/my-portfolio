@@ -29,7 +29,7 @@ export function SectionWrapper({ children, className = '', background = 'white',
 			>
 				{children}
             </motion.section>
-			<div className={twMerge('w-full border-t border-gray-200', isLast ? 'mt-16 mb-0' : 'my-16' )} />
+			<div className={twMerge('w-full border-t border-gray-200', isLast ? 'mt-6 md:mt-16 mb-0' : 'my-6 md:my-16' )} />
 		</>
 	);
 }

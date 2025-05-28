@@ -14,7 +14,7 @@ export function HomeHero() {
 
 	return (
 		<section className='relative h-screen flex flex-col justify-center items-center text-center px-4'>
-			<div className='absolute top-0 left-1/2 w-[600px] h-[600px] -translate-x-1/2 bg-blue-100 blur-[120px] opacity-20 -z-10' />
+			<div className='absolute top-0 left-1/2 w-100% h-[600px] -translate-x-1/2 bg-blue-100 blur-[120px] opacity-20 -z-10' />
 
 			{/* Particles Background */}
 			<Particles

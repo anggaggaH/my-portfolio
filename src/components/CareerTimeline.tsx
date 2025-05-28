@@ -30,13 +30,13 @@ export function CareerTimeline() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="w-full max-w-5xl mx-auto px-4 py-20"
+      className="section-container"
     >
       <div className="grid md:grid-cols-2 gap-12 items-start">
         {/* LEFT SIDE */}
         <div>
           <p className="text-sm italic text-gray-400 mb-2">Career Summary</p>
-          <h2 className="text-4xl font-bold leading-tight tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-bold leading-tight tracking-tight">
             5+ Years of Experience — Crafting Digital Interfaces for People, Brands, and Businesses.
           </h2>
         </div>
