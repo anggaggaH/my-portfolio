@@ -3,12 +3,29 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { Link as LScroll } from 'react-scroll';
+import { scroller } from 'react-scroll';
 import { X, Menu } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
 
 export function Header() {
 	const [isOpen, setIsOpen] = useState(false);
+	const router = useRouter();
+	const pathname = usePathname();
 
+	const handleClick = () => {
+		if (pathname === '/') {
+			// Already on homepage: just scroll
+			scroller.scrollTo('about-section', {
+				duration: 300,
+				delay: 0,
+				smooth: 'easeInOutQuart',
+				offset: -60,
+			});
+		} else {
+			router.push('/#about-section');
+		}
+		setIsOpen(false)
+	};
 	return (
 		<header className='fixed top-0 left-0 w-full px-6 py-4 z-50 flex justify-between items-center bg-transparent text-black'>
 			<Link href='/' className='text-xl font-bold'>
@@ -78,17 +95,17 @@ export function Header() {
 										<h4 className='text-sm text-gray-500'>Social</h4>
 										<ul className='space-y-2'>
 											<li>
-												<a href='https://linkedin.com/in/angga-hermawan/' className='hover:underline'>
+												<a href='https://linkedin.com/in/angga-hermawan/' className='hover:text-blue-600' target='_blank'>
 													LinkedIn
 												</a>
 											</li>
 											<li>
-												<a href='https://instagram.com/anggaggah_/' className='hover:underline'>
+												<a href='https://instagram.com/anggaggah_/' className='hover:text-blue-600' target='_blank'>
 													Instagram
 												</a>
 											</li>
 											<li>
-												<a href='https://github.com/anggaggaH' className='hover:underline'>
+												<a href='https://github.com/anggaggaH' className='hover:text-blue-600' target='_blank'>
 													GitHub
 												</a>
 											</li>
@@ -100,24 +117,20 @@ export function Header() {
 										<h4 className='text-sm text-gray-500'>Menu</h4>
 										<ul className='space-y-4 text-2xl font-medium'>
 											<li>
-												<LScroll
-													to='about-section'
-													smooth={true}
-													duration={500}
-													offset={-80} // Optional: offset for fixed headers
-													onClick={() => setIsOpen(false)} // Close menu if needed
+												<button
+													onClick={handleClick}
 													className='cursor-pointer text-2xl font-medium hover:text-blue-600'
 												>
 													About Me
-												</LScroll>
+												</button>
 											</li>
 											<li>
-												<Link href='/projects' className='hover:text-blue-600'>
+												<Link href='/projects' className='hover:text-blue-600' onClick={() => setIsOpen(false)}>
 													Projects
 												</Link>
 											</li>
 											<li>
-												<Link href='/contact' className='hover:text-blue-600'>
+												<Link href='/contact' className='hover:text-blue-600' onClick={() => setIsOpen(false)}>
 													Contact
 												</Link>
 											</li>

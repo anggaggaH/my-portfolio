@@ -7,11 +7,13 @@ import { FeaturedProjects } from '@/components/FeaturedProjects';
 import { ContactCTA } from '@/components/ContactCTA';
 // import { CertificatesSection } from '@/components/CertificatesSection';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
+import ScrollManager from './ui/ScrollManager';
 
 export default async function HomeWrapper() {
 	return (
 		// <main className='relative flex flex-col [&>*:not(:last-child)]:space-y-24 pt-8'>
 		<main className='relative flex flex-col pt-8'>
+			<ScrollManager />
 			<HomeHero />
 			<div className='w-full border-t border-gray-200 my-6 md:my-16' />
 			<SectionWrapper>
