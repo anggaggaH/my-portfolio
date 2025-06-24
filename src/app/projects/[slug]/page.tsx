@@ -2,12 +2,9 @@ import { notFound } from 'next/navigation';
 import ProjectDetailClientPage from './page.client';
 import { getProject } from '@/hooks/sanity/projectQuery';
 
-type PageParams = {
-	params: { slug: string };
-};
-
-export async function generateMetadata({ params }: PageParams) {
-	const project = await getProject({ slug: params.slug });
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+	const { slug } = await params;
+	const project = await getProject({ slug });
 
 	if (!project) return { title: 'Project Not Found' };
 
