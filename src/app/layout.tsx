@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 
 import { ClientLayout } from './clientLayout';
+import Analytics from '@/components/Analytics';
+import RouteChangeTracker from '@/components/RouteChangeTracker';
 import './globals.css';
 import './styles.scss';
 
@@ -21,6 +23,8 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className='font-sans antialiased'>
+				<Analytics />
+				<RouteChangeTracker />
 				<ClientLayout>{children}</ClientLayout>
 			</body>
 		</html>
