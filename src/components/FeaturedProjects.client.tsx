@@ -19,7 +19,7 @@ const cardVariants = {
 	}),
 };
 
-export function FeaturedProjectsClient({ projects }: { projects: Project[] }) { console.log(projects)
+export function FeaturedProjectsClient({ projects }: { projects: Project[] }) {
 	return (
 		<section className='section-container'>
 			<motion.h2

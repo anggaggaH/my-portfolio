@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Lightbox from 'yet-another-react-lightbox';
 import Link from 'next/link';
 import 'yet-another-react-lightbox/styles.css';
+import Head from 'next/head';
 
 import PageWrapper from '@/components/ui/PageWrapper';
 // import LoadingSpinner from '@/components/ui/LoadingSpinner';
@@ -42,79 +43,84 @@ export default function ProjectDetailClientPage({ project }: { project: Project 
 	if (!project) return notFound();
 
 	return (
-		<PageWrapper>
-			<BackButton />
+		<>
+			<Head>
+				<meta name='keywords' content={project.technologies?.join(', ') || 'portfolio, project, web developer'} />
+			</Head>
+			<PageWrapper>
+				<BackButton />
 
-			{/* Hero */}
-			<ProjectHero title={project.title} imageUrl={project.mainImage.asset.url} />
-			{/* <div className='relative w-full h-[50vh] rounded-xl overflow-hidden mb-8'>
-                <Image src={project.mainImage.asset.url} alt={project.title} fill priority className='object-contain' />
-                <div className='absolute inset-0 bg-black/50 flex items-center justify-center px-4 text-center'>
-                    <h1 className='text-white text-4xl md:text-5xl font-bold'>{project.title}</h1>
-                </div>
-            </div> */}
-
-			{/* Content */}
-			<div className='flex flex-col px-4 py-4 max-w-3xl mx-auto gap-10 pb-8'>
-				<SectionBlock title='Overview'>
-					<p>{project.overview}</p>
-				</SectionBlock>
-				<SectionBlock title='Problem'>
-					<p>{project.problem}</p>
-				</SectionBlock>
-				<SectionBlock title='Solution'>
-					<p>{project.solution}</p>
-				</SectionBlock>
-
-				<SectionBlock title='Technologies Used'>
-					<div className='flex flex-wrap gap-2'>
-						{project.technologies.map((tech: string) => (
-							<span key={tech} className='px-3 py-1 bg-gray-100 text-sm rounded-full border'>
-								{tech}
-							</span>
-						))}
+				{/* Hero */}
+				<ProjectHero title={project.title} imageUrl={project.mainImage.asset.url} />
+				{/* <div className='relative w-full h-[50vh] rounded-xl overflow-hidden mb-8'>
+					<Image src={project.mainImage.asset.url} alt={project.title} fill priority className='object-contain' />
+					<div className='absolute inset-0 bg-black/50 flex items-center justify-center px-4 text-center'>
+						<h1 className='text-white text-4xl md:text-5xl font-bold'>{project.title}</h1>
 					</div>
-				</SectionBlock>
+				</div> */}
 
-				<SectionBlock title='Result'>
-					<p>{project.result}</p>
-				</SectionBlock>
+				{/* Content */}
+				<div className='flex flex-col px-4 py-4 max-w-3xl mx-auto gap-10 pb-8'>
+					<SectionBlock title='Overview'>
+						<p>{project.overview}</p>
+					</SectionBlock>
+					<SectionBlock title='Problem'>
+						<p>{project.problem}</p>
+					</SectionBlock>
+					<SectionBlock title='Solution'>
+						<p>{project.solution}</p>
+					</SectionBlock>
 
-				{project.gallery?.length > 0 && (
-					<SectionBlock title='Gallery'>
-						<div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
-							{project.gallery.map((img: { asset: { url: string | StaticImport } }, idx: number) => (
-								<motion.div
-									key={idx}
-									whileHover={{ scale: 1.03 }}
-									onClick={() => setLightboxIndex(idx)}
-									className='overflow-hidden rounded-lg shadow-md cursor-pointer'
-								>
-									<Image
-										src={img.asset.url}
-										alt={`Gallery image ${idx + 1}`}
-										width={500}
-										height={300}
-										className='object-cover w-full h-auto'
-									/>
-								</motion.div>
+					<SectionBlock title='Technologies Used'>
+						<div className='flex flex-wrap gap-2'>
+							{project.technologies.map((tech: string) => (
+								<span key={tech} className='px-3 py-1 bg-gray-100 text-sm rounded-full border'>
+									{tech}
+								</span>
 							))}
 						</div>
-
-						{/* Lightbox */}
-						<Lightbox
-							open={lightboxIndex >= 0}
-							index={lightboxIndex}
-							close={() => setLightboxIndex(-1)}
-							slides={project.gallery.map((img: { asset: { url: string }; alt: string }) => ({
-								src: img.asset.url,
-								alt: img.alt || '',
-							}))}
-						/>
 					</SectionBlock>
-				)}
-			</div>
-		</PageWrapper>
+
+					<SectionBlock title='Result'>
+						<p>{project.result}</p>
+					</SectionBlock>
+
+					{project.gallery?.length > 0 && (
+						<SectionBlock title='Gallery'>
+							<div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
+								{project.gallery.map((img: { asset: { url: string | StaticImport } }, idx: number) => (
+									<motion.div
+										key={idx}
+										whileHover={{ scale: 1.03 }}
+										onClick={() => setLightboxIndex(idx)}
+										className='overflow-hidden rounded-lg shadow-md cursor-pointer'
+									>
+										<Image
+											src={img.asset.url}
+											alt={`Gallery image ${idx + 1}`}
+											width={500}
+											height={300}
+											className='object-cover w-full h-auto'
+										/>
+									</motion.div>
+								))}
+							</div>
+
+							{/* Lightbox */}
+							<Lightbox
+								open={lightboxIndex >= 0}
+								index={lightboxIndex}
+								close={() => setLightboxIndex(-1)}
+								slides={project.gallery.map((img: { asset: { url: string }; alt: string }) => ({
+									src: img.asset.url,
+									alt: img.alt || '',
+								}))}
+							/>
+						</SectionBlock>
+					)}
+				</div>
+			</PageWrapper>
+		</>
 	);
 }
 
