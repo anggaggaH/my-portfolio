@@ -38,7 +38,7 @@ export function AboutSection() {
 				{/* RIGHT COLUMN */}
 				<div className='space-y-6 text-gray-700'>
 					<p className='text-base leading-relaxed'>
-						I&apos;m a multi-skilled web developer with 5+ years of experience designing, coding, testing, and maintaining web applications.
+						Adaptive and multi-skilled Web Developer with over five years of experience delivering scalable, responsive, and high-performance web applications. Proficient across the full software development lifecycle, including design, implementation, debugging, testing, and maintenance of production systems.
 						Passionate about creating impactful solutions and building excellent platforms through collaboration and clean code.
 					</p>
 
