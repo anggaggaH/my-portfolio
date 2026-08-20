@@ -38,7 +38,7 @@ export function FeaturedProjectCard({
 				className='rounded-2xl border border-gray-200 shadow-md bg-white overflow-hidden'
 			>
 				<div className='relative w-full h-64'>
-					<Image src={imageUrl} alt={title} layout='fill' objectFit='cover' className='rounded-t-2xl' />
+					<Image src={imageUrl} alt={title} fill className='rounded-t-2xl object-cover' />
 				</div>
 
 				<div className='p-6 space-y-4'>
