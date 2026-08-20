@@ -4,34 +4,34 @@ import { SkillsSection } from '@/components/SkillsSection';
 import { AboutSection } from '@/components/AboutSection';
 import { CareerTimeline } from '@/components/CareerTimeline';
 import { FeaturedProjects } from '@/components/FeaturedProjects';
-import { ContactCTA } from '@/components/ContactCTA';
+import { GetInTouchSection } from '@/components/GetInTouchSection';
 // import { CertificatesSection } from '@/components/CertificatesSection';
 import { SectionWrapper } from '@/components/ui/SectionWrapper';
 import ScrollManager from './ui/ScrollManager';
 
 export default async function HomeWrapper() {
 	return (
-		// <main className='relative flex flex-col [&>*:not(:last-child)]:space-y-24 pt-8'>
-		<main className='relative flex flex-col pt-8'>
+		<main className='relative flex flex-col'>
 			<ScrollManager />
 			<HomeHero />
-			<div className='w-full border-t border-gray-200 my-6 md:my-16' />
-			<SectionWrapper>
+			<SectionWrapper background='white' showDivider={false}>
 				<AboutSection />
 			</SectionWrapper>
-			<SectionWrapper>
-				<CareerTimeline />
-			</SectionWrapper>
-			<SectionWrapper>
+			<SectionWrapper background='gray' showDivider={false}>
 				<FeaturedProjects />
 			</SectionWrapper>
-			<SectionWrapper isLast={true}>
+			<SectionWrapper background='white' showDivider={false}>
 				<SkillsSection />
 			</SectionWrapper>
-			{/* <SectionWrapper background='white' isLast={true}>
+			<SectionWrapper background='gray' showDivider={false}>
+				<CareerTimeline />
+			</SectionWrapper>
+			{/* <SectionWrapper background='white'>
 					<CertificatesSection />
 				</SectionWrapper> */}
-			<ContactCTA />
+			<SectionWrapper background='gradient' isLast showDivider={false}>
+				<GetInTouchSection />
+			</SectionWrapper>
 		</main>
 	);
 }

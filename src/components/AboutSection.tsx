@@ -1,70 +1,53 @@
 'use client';
 
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Mail, Phone, Linkedin } from 'lucide-react';
+import { Mail, Linkedin, Phone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { aboutContent } from '@/content/home';
 
 export function AboutSection() {
 	return (
-		<motion.section
-			id="about-section"
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			transition={{ delay: 0.3, duration: 0.6 }}
-			className='section-container'
-		>
-			<div className='grid md:grid-cols-2 gap-12 items-start'>
-				{/* LEFT COLUMN */}
-				<div className='space-y-6'>
-					<div className='flex items-center gap-4'>
-						<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className='w-auto h-full'>
-							<Image
-								src='/images/profile.jpeg' // 👈 change path if needed
-								alt='Angga Hermawan'
-								width={100}
-								height={100}
-								className='w-full h-full rounded-full object-cover shadow-md'
-							/>
-						</motion.div>
-						<div className='text-gray-800'>
-							<p className='text-sm italic text-gray-400'>This is me.</p>
-							<h2 className='text-2xl font-semibold leading-tight tracking-tight'>
-								I build websites with purpose and precision — clean, responsive, and human-centered.
-							</h2>
-						</div>
-					</div>
+		<section id='about-section' className='section-container scroll-mt-24'>
+			<div className='grid md:grid-cols-[1.1fr_0.9fr] gap-10 md:gap-16 items-start'>
+				<div>
+					<p className='text-xs uppercase tracking-[0.2em] text-gray-400 mb-3'>{aboutContent.eyebrow}</p>
+					<h2 className='text-2xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-tight text-gray-900'>
+						{aboutContent.headline}
+					</h2>
 				</div>
 
-				{/* RIGHT COLUMN */}
-				<div className='space-y-6 text-gray-700'>
-					<p className='text-base leading-relaxed'>
-						Adaptive and multi-skilled Web Developer with over five years of experience delivering scalable, responsive, and high-performance web applications. Proficient across the full software development lifecycle, including design, implementation, debugging, testing, and maintenance of production systems.
-						Passionate about creating impactful solutions and building excellent platforms through collaboration and clean code.
-					</p>
+				<div className='space-y-5 text-gray-600'>
+					{aboutContent.paragraphs.map((paragraph) => (
+						<p key={paragraph} className='text-base md:text-lg leading-relaxed'>
+							{paragraph}
+						</p>
+					))}
 
-					<div className='flex flex-wrap gap-3 pt-4'>
-						<a
-							href='mailto:anggah.net@gmail.com'
-							className='inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-sm font-medium hover:bg-gray-800 transition'
-						>
+					<div className='flex flex-wrap gap-2 pt-1'>
+						{aboutContent.focusAreas.map((area) => (
+							<span key={area} className='text-xs font-medium text-gray-700 bg-white border border-gray-200 px-3 py-1.5 rounded-md'>
+								{area}
+							</span>
+						))}
+					</div>
+
+					<div className='flex flex-wrap items-center gap-3 pt-3'>
+						<Button href={`mailto:${aboutContent.email}`}>
 							<Mail className='w-4 h-4' /> Email Me
-						</a>
+						</Button>
 						<a
-							href='tel:+6285795281435'
-							className='inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-sm font-medium hover:bg-gray-800 transition'
-						>
-							<Phone className='w-4 h-4' /> Call Me
-						</a>
-						<a
-							href='https://linkedin.com/in/angga-hermawan/'
-							className='inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full text-sm font-medium hover:bg-gray-800 transition'
+							href={aboutContent.linkedin}
 							target='_blank'
+							rel='noopener noreferrer'
+							className='inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-blue-600 transition min-h-11'
 						>
 							<Linkedin className='w-4 h-4' /> LinkedIn
+						</a>
+						<a href={`tel:${aboutContent.phone}`} className='inline-flex items-center gap-1.5 text-sm text-gray-600 hover:text-blue-600 transition min-h-11'>
+							<Phone className='w-4 h-4' /> Call
 						</a>
 					</div>
 				</div>
 			</div>
-		</motion.section>
+		</section>
 	);
 }

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 		default: 'Angga Hermawan | Web Developer',
 		template: '%s | Angga Hermawan',
 	},
-	description: `Angga Hermawan is a Multi-skilled web developer with 5+ years of experience designing, coding, testing, and maintaining web applications. Passionate about creating impactful solutions and building excellent platforms through collaboration and clean code`,
+	description: `Angga Hermawan is a Multi-skilled web developer with 6+ years of experience designing, coding, testing, and maintaining web applications. Passionate about creating impactful solutions and building excellent platforms through collaboration and clean code`,
 	keywords: ['Frontend Developer', 'Web Developer', 'Web Development', 'Jakarta', 'Desktop Applications', 'Websites'],
 };
 

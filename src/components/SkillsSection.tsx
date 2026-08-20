@@ -1,12 +1,24 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, SiVite, SiGithub, SiGatsby, SiElement, SiGitlab, SiMaterialdesign, SiSass } from 'react-icons/si';
-import { DiVisualstudio  } from 'react-icons/di';
+import {
+	SiReact,
+	SiNextdotjs,
+	SiTailwindcss,
+	SiTypescript,
+	SiVite,
+	SiGithub,
+	SiGatsby,
+	SiElement,
+	SiGitlab,
+	SiMaterialdesign,
+	SiSass,
+} from 'react-icons/si';
 import { FaBootstrap, FaPhp, FaVuejs } from 'react-icons/fa';
-import { BsCursorFill, BsFillChatDotsFill } from "react-icons/bs";
+import type { IconType } from 'react-icons';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
-const skills = {
+const skills: Record<string, { name: string; icon: IconType }[]> = {
 	Frontend: [
 		{ name: 'React', icon: SiReact },
 		{ name: 'Next.js', icon: SiNextdotjs },
@@ -22,67 +34,62 @@ const skills = {
 		{ name: 'Material UI', icon: SiMaterialdesign },
 		{ name: 'Sass', icon: SiSass },
 	],
-	'Backend / BaaS': [
-		// { name: 'Firebase', icon: SiFirebase },
-		{ name: 'PhP', icon: FaPhp },
-	],
+	'Backend / BaaS': [{ name: 'PHP', icon: FaPhp }],
 	Tools: [
-		{ name: 'VS Code', icon: DiVisualstudio },
-		{ name: 'ChatGPT', icon: BsFillChatDotsFill },
-		{ name: 'Cursor', icon: BsCursorFill },
 		{ name: 'GitLab', icon: SiGitlab },
 		{ name: 'GitHub', icon: SiGithub },
 	],
 };
 
 const itemVariants = {
-	hidden: { opacity: 0, y: 15 },
+	hidden: { opacity: 0, y: 10 },
 	visible: { opacity: 1, y: 0 },
 };
 
 export function SkillsSection() {
+	const reducedMotion = usePrefersReducedMotion();
+
 	return (
-		<motion.section
-			initial='hidden'
-			whileInView='visible'
-			viewport={{ once: true }}
-			variants={{
-				hidden: {},
-				visible: { transition: { staggerChildren: 0.08 } },
-			}}
-			className='section-container'
-		>
-			<div className='grid md:grid-cols-2 gap-12 items-start'>
-				{/* LEFT COLUMN */}
+		<section id='skills' className='section-container scroll-mt-24'>
+			<div className='grid md:grid-cols-2 gap-10 md:gap-14 items-start'>
 				<div>
-					<p className='text-sm italic text-gray-400 mb-2'>What I Use</p>
-					<h2 className='text-2xl md:text-3xl font-bold leading-tight tracking-tight'>
-						I combine modern technologies and proven tools to ship scalable, fast, and beautiful interfaces.
+					<p className='text-xs uppercase tracking-[0.2em] text-gray-400 mb-3'>Skills</p>
+					<h2 className='text-2xl md:text-3xl font-bold leading-tight tracking-tight text-gray-900'>
+						Modern tools and proven stacks to ship fast, scalable interfaces.
 					</h2>
+					<p className='mt-4 text-sm text-gray-500'>Daily tooling: Cursor, VS Code, and AI assistants when they speed up the craft.</p>
 				</div>
 
-				{/* RIGHT COLUMN */}
-				<div className='space-y-6'>
+				<motion.div
+					initial='hidden'
+					whileInView='visible'
+					viewport={{ once: true }}
+					variants={{
+						hidden: {},
+						visible: reducedMotion ? {} : { transition: { staggerChildren: 0.04 } },
+					}}
+					className='space-y-8'
+				>
 					{Object.entries(skills).map(([group, items]) => (
 						<div key={group}>
-							<h3 className='text-sm font-semibold text-gray-500 mb-2'>{group}</h3>
-							<div className='flex flex-wrap gap-3'>
+							<h3 className='text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3'>{group}</h3>
+							<div className='grid grid-cols-3 sm:grid-cols-4 gap-3'>
 								{items.map(({ name, icon: Icon }) => (
 									<motion.div
 										key={name}
-										variants={itemVariants}
-										whileHover={{ scale: 1.07 }}
-										transition={{ type: 'spring', stiffness: 300 }}
-										className='flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-full shadow-sm hover:bg-blue-50 hover:text-blue-600 hover:shadow-md text-sm text-gray-800 cursor-default transition-all'
+										variants={reducedMotion ? undefined : itemVariants}
+										whileHover={reducedMotion ? undefined : { y: -2 }}
+										className='flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-white px-2 py-3 text-center'
 									>
-										<Icon className='text-blue-500' /> {name}
+										<Icon className='text-blue-500' size={22} />
+										<span className='text-xs text-gray-700 leading-tight'>{name}</span>
 									</motion.div>
 								))}
 							</div>
 						</div>
 					))}
-				</div>
+				</motion.div>
 			</div>
-		</motion.section>
+		</section>
 	);
 }

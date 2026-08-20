@@ -3,33 +3,43 @@
 import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 type SectionWrapperProps = {
 	children: ReactNode;
 	className?: string;
-    background?: 'white' | 'gray' | 'gradient';
-    isLast?: boolean;
+	background?: 'white' | 'gray' | 'gradient';
+	isLast?: boolean;
+	showDivider?: boolean;
 };
 
-export function SectionWrapper({ children, className = '', background = 'white', isLast = false }: SectionWrapperProps) {
+export function SectionWrapper({
+	children,
+	className = '',
+	background = 'white',
+	isLast = false,
+	showDivider = true,
+}: SectionWrapperProps) {
+	const reducedMotion = usePrefersReducedMotion();
+
 	const bgClass = {
 		white: 'bg-white',
 		gray: 'bg-gray-50',
-		gradient: 'bg-gradient-to-br from-white to-blue-50',
+		gradient: 'bg-gradient-to-br from-blue-50/80 via-white to-white',
 	}[background];
 
 	return (
 		<>
 			<motion.section
-				initial={{ opacity: 0, y: 30 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				viewport={{ once: true }}
-				transition={{ duration: 0.5 }}
-				className={`py-8 md:py-4 px-8 ${bgClass} ${className}`}
+				initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+				whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+				viewport={{ once: true, amount: 0.12 }}
+				transition={{ duration: 0.45, ease: 'easeOut' }}
+				className={twMerge('py-14 md:py-20 px-4 md:px-8', bgClass, className)}
 			>
 				{children}
-            </motion.section>
-			<div className={twMerge('w-full border-t border-gray-200', isLast ? 'mt-6 md:mt-16 mb-0' : 'my-6 md:my-16' )} />
+			</motion.section>
+			{showDivider && !isLast && <div className='w-full border-t border-gray-100' />}
 		</>
 	);
 }

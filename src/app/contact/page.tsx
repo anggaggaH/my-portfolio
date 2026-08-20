@@ -1,27 +1,16 @@
-import ContactPageClient from "./contactPageClient";
+'use client';
 
-export const metadata = {
-	title: 'Contact',
-	description:
-		'Reach out to Angga Hermawan, a seasoned frontend developer with over 5 years of experience, for freelance, remote, or full-time opportunities.',
-	keywords: ['Contact', 'Angga Hermawan', 'Frontend Developer', 'Web Developer', 'Freelance Opportunities', 'Remote Work'],
-	openGraph: {
-		title: 'Contact - Angga Hermawan',
-		description:
-			'Reach out to Angga Hermawan, a seasoned frontend developer with over 5 years of experience, for freelance, remote, or full-time opportunities.',
-		url: 'https://anggahermawan.com/contact',
-		type: 'website',
-	},
-	twitter: {
-		card: 'summary_large_image',
-		title: 'Contact - Angga Hermawan',
-		description:
-			'Reach out to Angga Hermawan, a seasoned frontend developer with over 5 years of experience, for freelance, remote, or full-time opportunities.',
-	},
-};
+import { useEffect } from 'react';
 
-export default function ContactPage() {
+/** Preserves hash: HTTP redirects drop `#` fragments. */
+export default function ContactRedirectPage() {
+	useEffect(() => {
+		window.location.replace('/#get-in-touch');
+	}, []);
+
 	return (
-		<ContactPageClient />
+		<div className='min-h-[40vh] flex items-center justify-center text-sm text-gray-500'>
+			Redirecting to Get In Touch…
+		</div>
 	);
 }
