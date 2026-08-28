@@ -18,6 +18,8 @@ export async function getProjects({
     title,
     slug,
     overview,
+    problem,
+    result,
     technologies,
     features,
     location,

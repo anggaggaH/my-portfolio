@@ -1,50 +1,50 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import {
-	SiReact,
-	SiNextdotjs,
-	SiTailwindcss,
-	SiTypescript,
-	SiVite,
-	SiGithub,
-	SiGatsby,
-	SiElement,
-	SiGitlab,
-	SiMaterialdesign,
-	SiSass,
-} from 'react-icons/si';
-import { FaBootstrap, FaPhp, FaVuejs } from 'react-icons/fa';
-import type { IconType } from 'react-icons';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
-const skills: Record<string, { name: string; icon: IconType }[]> = {
-	Frontend: [
-		{ name: 'React', icon: SiReact },
-		{ name: 'Next.js', icon: SiNextdotjs },
-		{ name: 'TypeScript', icon: SiTypescript },
-		{ name: 'Vite', icon: SiVite },
-		{ name: 'Vue.js', icon: FaVuejs },
-		{ name: 'Gatsby.js', icon: SiGatsby },
-	],
-	Styling: [
-		{ name: 'TailwindCSS', icon: SiTailwindcss },
-		{ name: 'Bootstrap', icon: FaBootstrap },
-		{ name: 'Element Plus', icon: SiElement },
-		{ name: 'Material UI', icon: SiMaterialdesign },
-		{ name: 'Sass', icon: SiSass },
-	],
-	'Backend / BaaS': [{ name: 'PHP', icon: FaPhp }],
-	Tools: [
-		{ name: 'GitLab', icon: SiGitlab },
-		{ name: 'GitHub', icon: SiGithub },
-	],
+const skillGroups: Record<string, string[]> = {
+	Frontend: ['React', 'Next.js', 'TypeScript', 'Vite', 'Vue.js', 'Gatsby.js'],
+	Styling: ['TailwindCSS', 'Bootstrap', 'Element Plus', 'Material UI', 'Sass'],
+	'Backend / BaaS': ['PHP'],
+	Tools: ['GitLab', 'GitHub', 'Cursor', 'VS Code'],
 };
 
-const itemVariants = {
-	hidden: { opacity: 0, y: 10 },
-	visible: { opacity: 1, y: 0 },
-};
+const row1 = [...skillGroups.Frontend, ...skillGroups.Styling];
+const row2 = [...skillGroups['Backend / BaaS'], ...skillGroups.Tools, ...skillGroups.Frontend.slice(0, 3)];
+
+function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boolean }) {
+	const doubled = [...items, ...items];
+
+	return (
+		<div className='overflow-hidden'>
+			<div className={reverse ? 'marquee-track-reverse' : 'marquee-track'}>
+				{doubled.map((name, i) => (
+					<span
+						key={`${name}-${i}`}
+						className='inline-flex items-center mx-6 md:mx-10 text-2xl md:text-3xl font-semibold text-gray-300 whitespace-nowrap select-none'
+					>
+						{name}
+					</span>
+				))}
+			</div>
+		</div>
+	);
+}
+
+function StaticSkillList() {
+	const all = Object.entries(skillGroups);
+
+	return (
+		<div className='space-y-6'>
+			{all.map(([group, items]) => (
+				<div key={group}>
+					<h3 className='text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3'>{group}</h3>
+					<p className='text-base text-gray-700 leading-relaxed'>{items.join(' · ')}</p>
+				</div>
+			))}
+		</div>
+	);
+}
 
 export function SkillsSection() {
 	const reducedMotion = usePrefersReducedMotion();
@@ -60,35 +60,16 @@ export function SkillsSection() {
 					<p className='mt-4 text-sm text-gray-500'>Daily tooling: Cursor, VS Code, and AI assistants when they speed up the craft.</p>
 				</div>
 
-				<motion.div
-					initial='hidden'
-					whileInView='visible'
-					viewport={{ once: true }}
-					variants={{
-						hidden: {},
-						visible: reducedMotion ? {} : { transition: { staggerChildren: 0.04 } },
-					}}
-					className='space-y-8'
-				>
-					{Object.entries(skills).map(([group, items]) => (
-						<div key={group}>
-							<h3 className='text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3'>{group}</h3>
-							<div className='grid grid-cols-3 sm:grid-cols-4 gap-3'>
-								{items.map(({ name, icon: Icon }) => (
-									<motion.div
-										key={name}
-										variants={reducedMotion ? undefined : itemVariants}
-										whileHover={reducedMotion ? undefined : { y: -2 }}
-										className='flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-white px-2 py-3 text-center'
-									>
-										<Icon className='text-blue-500' size={22} />
-										<span className='text-xs text-gray-700 leading-tight'>{name}</span>
-									</motion.div>
-								))}
-							</div>
-						</div>
-					))}
-				</motion.div>
+				<div className='space-y-4 py-2'>
+					{reducedMotion ? (
+						<StaticSkillList />
+					) : (
+						<>
+							<MarqueeRow items={row1} />
+							<MarqueeRow items={row2} reverse />
+						</>
+					)}
+				</div>
 			</div>
 		</section>
 	);

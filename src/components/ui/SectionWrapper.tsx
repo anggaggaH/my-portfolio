@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { duration, easeOut, sectionEnterVariants } from '@/lib/motion';
 
 type SectionWrapperProps = {
 	children: ReactNode;
@@ -31,10 +32,11 @@ export function SectionWrapper({
 	return (
 		<>
 			<motion.section
-				initial={reducedMotion ? false : { opacity: 0, y: 24 }}
-				whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-				viewport={{ once: true, amount: 0.12 }}
-				transition={{ duration: 0.45, ease: 'easeOut' }}
+				initial={reducedMotion ? false : 'hidden'}
+				whileInView={reducedMotion ? undefined : 'visible'}
+				viewport={{ once: true, amount: 0.08 }}
+				variants={reducedMotion ? undefined : sectionEnterVariants}
+				transition={{ duration: duration.default, ease: easeOut }}
 				className={twMerge('py-14 md:py-20 px-4 md:px-8', bgClass, className)}
 			>
 				{children}
