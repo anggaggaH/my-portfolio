@@ -23,6 +23,7 @@ export async function getProjects({
     technologies,
     features,
     location,
+    date,
     mainImage{
       asset->{
         url,

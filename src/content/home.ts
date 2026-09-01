@@ -56,3 +56,9 @@ export const getInTouchContent = {
 	headline: "Let's work together",
 	support: "I'm open to freelance, remote, or full-time roles. Send a message or reach out directly.",
 };
+
+export const projectsPageContent = {
+	eyebrow: 'Archive',
+	headline: 'Projects',
+	support: 'Selected client work with problem, solution, and results.',
+};

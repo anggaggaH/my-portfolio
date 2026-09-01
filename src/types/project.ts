@@ -8,6 +8,7 @@ export type Project = {
 	features: string[];
 	mainImage?: any;
 	location: string;
+	date?: string;
 	problem: string;
 	solution: string;
 	gallery: any[];

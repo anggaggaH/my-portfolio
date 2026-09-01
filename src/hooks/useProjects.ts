@@ -29,6 +29,7 @@ export const useProjects = ({ favoriteOnly, limit, sort = 'desc' }: UseProjectsP
         technologies,
         features,
         location,
+        date,
         mainImage{
           asset->{
             url,
